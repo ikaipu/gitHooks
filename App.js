@@ -5,6 +5,8 @@
  */
 
 import React, { Component } from 'react';
+import NFC, {NfcDataType, NdefRecordType} from "react-native-nfc";
+import {ToastAndroid} from "react-native";
 import {
   Platform,
   StyleSheet,
@@ -37,6 +39,39 @@ export default class App extends Component<Props> {
     );
   }
 }
+
+NFC.addListener((payload) => {
+
+  switch (payload.type) {
+
+    case NfcDataType.NDEF:
+      let messages = payload.data;
+      for (let i in messages) {
+        let records = messages[i];
+        for (let j in records) {
+          let r = records[j];
+          if (r.type === NdefRecordType.TEXT) {
+            // do something with the text data
+          } else {
+            ToastAndroid.show(
+              `Non-TEXT tag of type ${r.type} with data ${r.data}`,
+              ToastAndroid.SHORT
+            );
+          }
+        }
+      }
+      break;
+
+    case NfcDataType.TAG:
+      ToastAndroid.show(
+        `The TAG is non-NDEF:\n\n${payload.data.description}`,
+        ToastAndroid.SHORT
+      );
+      break;
+  }
+
+});
+
 
 const styles = StyleSheet.create({
   container: {
