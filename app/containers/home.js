@@ -4,15 +4,9 @@
  * @flow
  */
 
-import React, { Component } from 'react';
-import NFC, {NfcDataType, NdefRecordType} from "react-native-nfc";
-import {ToastAndroid} from "react-native";
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import React, {Component} from 'react';
+import {Platform, StyleSheet, Text, ToastAndroid, View} from 'react-native';
+import NFC, {NdefRecordType, NfcDataType} from 'react-native-nfc';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -41,9 +35,7 @@ export default class App extends Component<Props> {
 }
 
 NFC.addListener((payload) => {
-
   switch (payload.type) {
-
     case NfcDataType.NDEF:
       let messages = payload.data;
       for (let i in messages) {
@@ -61,7 +53,6 @@ NFC.addListener((payload) => {
         }
       }
       break;
-
     case NfcDataType.TAG:
       ToastAndroid.show(
         `The TAG is non-NDEF:\n\n${payload.data.description}`,
@@ -69,7 +60,6 @@ NFC.addListener((payload) => {
       );
       break;
   }
-
 });
 
 
