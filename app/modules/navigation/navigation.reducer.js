@@ -6,5 +6,7 @@ const initialNavState =
 
 export default function navigation(state = initialNavState, action) {
   const nextState = AppNavigator.router.getStateForAction(action, state);
+
+
   return nextState || state;
 }

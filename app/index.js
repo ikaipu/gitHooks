@@ -63,7 +63,7 @@ export default class Root extends Component {
     };
     AppState.addEventListener('change', this.handleAppStateChange);
     NetInfo.addEventListener('connectionChange', this.handleConnectivityChange);
-    window.onunhandledrejection = (promise, reason) => {
+    window.onunhandledrejection = (promise, reason) => { // eslint-disable-line
       console.error('Unhandled rejection is', promise, reason);
     };
   }

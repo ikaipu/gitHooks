@@ -6,14 +6,23 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
     "react-devtool": "react-devtools",
-    "redux-devtool": "remotedev"
+    "redux-devtool": "remotedev",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
   },
   "dependencies": {
+    "core-js": "^2.5.5",
     "immutable": "^3.8.2",
     "prop-types": "^15.6.1",
     "react": "16.3.1",
     "react-devtools": "^3.2.1",
     "react-native": "0.55.3",
+    "react-native-console-time-polyfill": "0.0.6",
     "react-native-nfc": "^0.3.0",
     "react-navigation": "^1.5.11",
     "react-navigation-redux-helpers": "^1.0.5",
@@ -22,6 +31,7 @@
     "redux-persist": "^5.9.1",
     "redux-persist-transform-immutable": "^5.0.0",
     "redux-thunk": "^2.2.0",
+    "remote-redux-devtools": "^0.5.12",
     "reselect": "^3.0.1"
   },
   "devDependencies": {
@@ -35,10 +45,10 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
     "eslint-plugin-react-native": "^3.2.1",
+    "husky": "^0.14.3",
     "jest": "22.4.3",
-    "react-native-console-time-polyfill": "0.0.6",
-    "react-test-renderer": "16.3.1",
-    "remote-redux-devtools": "^0.5.12"
+    "lint-staged": "^7.0.5",
+    "react-test-renderer": "16.3.1"
   },
   "jest": {
     "preset": "react-native"
