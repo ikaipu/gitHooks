@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
-import React, {Component} from 'react';
-import {View} from 'react-native';
-import {connect} from 'react-redux';
-import {navigateTo} from '../../modules/navigation/navigation';
+import React, { Component } from 'react';
+import { View } from 'react-native';
+import { connect } from 'react-redux';
+import { navigateTo } from '../../modules/navigation/navigation';
 
 class InitialRoute extends Component {
   constructor(props) {
     super(props);
+
     return navigateTo('Home', this.props.navigation);
   }
 

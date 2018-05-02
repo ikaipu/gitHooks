@@ -36,29 +36,33 @@ export default class App extends Component<Props> {
 
 NFC.addListener((payload) => {
   switch (payload.type) {
-    case NfcDataType.NDEF:
-      let messages = payload.data;
-      for (let i in messages) {
-        let records = messages[i];
-        for (let j in records) {
-          let r = records[j];
-          if (r.type === NdefRecordType.TEXT) {
+    case NfcDataType.NDEF: {
+      const messages = payload.data;
+
+      messages.forEach((records) => {
+        records.forEach((record) => {
+          if (record.type === NdefRecordType.TEXT) {
             // do something with the text data
           } else {
             ToastAndroid.show(
-              `Non-TEXT tag of type ${r.type} with data ${r.data}`,
-              ToastAndroid.SHORT
+              `Non-TEXT tag of type ${record.type} with data ${record.data}`,
+              ToastAndroid.SHORT,
             );
           }
-        }
-      }
+        });
+      });
       break;
-    case NfcDataType.TAG:
+    }
+    case NfcDataType.TAG: {
       ToastAndroid.show(
         `The TAG is non-NDEF:\n\n${payload.data.description}`,
-        ToastAndroid.SHORT
+        ToastAndroid.SHORT,
       );
       break;
+    }
+    default: {
+      break;
+    }
   }
 });
 
