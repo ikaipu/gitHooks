@@ -5,6 +5,7 @@ import {addNavigationHelpers, NavigationActions, StackNavigator} from 'react-nav
 import {createReduxBoundAddListener} from 'react-navigation-redux-helpers';
 import {connect} from 'react-redux';
 import Home from '../../containers/home';
+import Anonymous from '../../containers/anonymous';
 import InitialRoute from './initial.route';
 
 export const navigateTo = (routeName, navigation, params) => {
@@ -22,6 +23,9 @@ export const AppNavigator = StackNavigator({
   },
   Home: {
     screen: Home,
+  },
+  Anonymous: {
+    screen: Anonymous,
   },
 });
 
